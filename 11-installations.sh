@@ -8,3 +8,5 @@ then
     echo "Plese run the script with root user"
     exit 1
 fi
+
+dnf list installed git
