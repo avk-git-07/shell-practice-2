@@ -1,13 +1,13 @@
 #!/bin/bash
 
-USERID=$(id -u)
-echo "The user's id is $USERID"
+# USERID=$(id -u)
+# echo "The user's id is $USERID"
 
-if [ $USERID -ne 0 ]
-then 
-    echo "Plese run the script with root user"
-    exit 1
-fi
+# if [ $USERID -ne 0 ]
+# then 
+#     echo "Plese run the script with root user"
+#     exit 1
+# fi
 
 dnf list installed git
 if [ $? -ne 0 ]
@@ -25,3 +25,19 @@ else
     echo "The Git is already installed, nothing to do.."
 fi
 
+dnf list installed mysql
+if [ $? -ne 0 ]
+then
+    echo "MySQL is not installed, let us install it.."
+    dnf install mysql -y
+    if [ $? -ne 0 ]
+    then
+        echo "MySQL installation is failure.."
+        exit 1
+    else
+        echo "MySQL installation is successful.."
+    fi
+else
+    echo "MysQL is already installed, nothing to do.."
+
+fi
