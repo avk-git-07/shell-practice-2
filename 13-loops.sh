@@ -12,6 +12,6 @@ done
 
 if [ $USERID -ne 0 ]
 then
-    echo "$R Run this script with root user $N"
+    echo -e "$R Run this script with root user $N"
     exit 1
 fi
