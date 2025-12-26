@@ -33,11 +33,11 @@ do
     dnf list installed $pkg
     if [ $? -ne 0 ]
     then
-        echo -e "$B The $? is not installed, so we are installing it now...!!! $N"
+        echo -e "$B The $pkg is not installed, so we are installing it now...!!! $N"
         dnf install $pkg -y
         VALIDATE $? $pkg
     else
-        echo -e "$Y The $? is already installed, nothing to do ...!!! $N"
+        echo -e "$Y The $pkg is already installed, nothing to do ...!!! $N"
     fi
 done
 
