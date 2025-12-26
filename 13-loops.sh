@@ -1,9 +1,9 @@
 #!/bin/bash
 
 USERID=$(id -u)
-R=\e[31m
-G=\e[32m
-N=\e[0m
+R="\e[31m"
+G="\e[32m"
+N="\e[0m"
 
 for i in {0..10}
 do 
