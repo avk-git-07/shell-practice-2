@@ -8,28 +8,28 @@ N="\e[0m"
 VALIDATE(){
     if [ $1 -eq 0 ]
     then
-        echo -e "$G $2 is installed successfully..!!! $N"
+        echo -e "$G $2 is uninstalled successfully...!!! $N"
     else
-        echo -e "$R $2 installation is failed ...!!! $N"
+        echo -e "$R $2 is failed to uninstall ...!! $N"
     fi
 }
 
 if [ $USERID -ne 0 ]
 then
-    echo -e "$R Please run this script with root user only..!!!"
+    echo -e "$R please run this script with root user..!!! $N"
     exit 1
 fi
 
 for pkg in $@
-do 
+do
     dnf list installed $pkg
-    if [ $? -ne 0 ]
+    if [ $? -eq 0 ]
     then
-        echo -e "$R $pkg is not there in the server, so we are installing it...!!! $N"
-        dnf install $pkg -y
+        echo -e "$R the $pkg is there in the server, we are removing it now ...!!! $N"
+        dnf remove $pkg -y
         VALIDATE $? $pkg
     else
-        echo -e "$G $pkg is already installed, so nothing to do..!!! #N"
+        echo -e "$G the $pkg is already removed, nothing to do...!!! $N"
     fi
 done
 
