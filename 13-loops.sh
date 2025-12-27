@@ -9,6 +9,7 @@ VALIDATE(){
     if [ $1 -eq 0 ]
     then
         echo -e "$G $2 is uninstalled successfully...!!! $N"
+        echo ""
     else
         echo -e "$R $2 is failed to uninstall ...!! $N"
     fi
@@ -26,10 +27,12 @@ do
     if [ $? -eq 0 ]
     then
         echo -e "$R the $pkg is there in the server, we are removing it now ...!!! $N"
+        echo ""
         dnf remove $pkg -y
         VALIDATE $? $pkg
     else
         echo -e "$G the $pkg is already removed, nothing to do...!!! $N"
+        echo ""
     fi
 done
 
