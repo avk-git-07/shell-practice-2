@@ -26,7 +26,7 @@ fi
 for pkg in $@
 do
     dnf list installed $pkg
-    if [ $? -e 0 ]
+    if [ $? -eq 0 ]
     then
         echo -e "$Y The $pkg is there in the server. So, we are uninstalling it...!!! $N"
         dnf remove $pkg -y
