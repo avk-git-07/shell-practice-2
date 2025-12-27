@@ -1,43 +1,39 @@
 #!/bin/bash
 
 USERID=$(id -u)
-R="\e[31m"
-G="\e[32m"
 B="\e[33m"
+G="\e[31m"
+R="\e[32m"
 Y="\e[35m"
 N="\e[0m"
 
-for i in {0..10}
-do 
-    echo $i
-done
+VALIDATE(){
+    if [ $1 -ne 0 ]
+    then
+        echo -e "$G $2 is uninstalled successfully...!!! $N"
+    else
+        echo -e "$R $2 is failed to uninstall...!!! $N"
+    fi
+}
 
 if [ $USERID -ne 0 ]
 then
-    echo -e "$R Run this script with root user $N"
+    echo -e "$R Run this script with root user only...!!! $N"
     exit 1
 fi
 
-VALIDATE(){
-    if [$1 -ne 0 ]
-    then
-        echo -e "$R $2 installation is failed..!! $N"
-        exit 1
-    else
-        echo -e "$G $2 installation is successful...!!! $N"
-    fi
-}
 
 for pkg in $@
 do
     dnf list installed $pkg
-    if [ $? -ne 0 ]
+    if [ $? -e 0 ]
     then
-        echo -e "$B The $pkg is not installed, so we are installing it now...!!! $N"
-        dnf install $pkg -y
+        echo -e "$Y The $pkg is there in the server. So, we are uninstalling it...!!! $N"
+        dnf remove $pkg -y
         VALIDATE $? $pkg
     else
-        echo -e "$Y The $pkg is already installed, nothing to do ...!!! $N"
+        echo -e "$G The $pkg is not available, nothing to do...!!! $N"
     fi
 done
+
 
