@@ -11,6 +11,7 @@ VALIDATE(){
         echo -e "$G $2 is installed successfully..!!! $N"
     else
         echo -e "$R $2 installation is failed ...!!! $N"
+    fi
 }
 
 if [ $USERID -ne 0 ]
