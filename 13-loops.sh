@@ -2,13 +2,13 @@
 
 USERID=$(id -u)
 B="\e[33m"
-G="\e[31m"
-R="\e[32m"
-Y="\e[35m"
+R="\e[31m"
+G="\e[32m"
+V="\e[35m"
 N="\e[0m"
 
 VALIDATE(){
-    if [ $1 -ne 0 ]
+    if [ $1 -eq 0 ]
     then
         echo -e "$G $2 is uninstalled successfully...!!! $N"
     else
@@ -28,11 +28,11 @@ do
     dnf list installed $pkg
     if [ $? -eq 0 ]
     then
-        echo -e "$Y The $pkg is there in the server. So, we are uninstalling it...!!! $N"
+        echo -e "$V The $pkg is there in the server. So, we are uninstalling it...!!! $N"
         dnf remove $pkg -y
         VALIDATE $? $pkg
     else
-        echo -e "$G The $pkg is not available, nothing to do...!!! $N"
+        echo -e "$B The $pkg is not available, nothing to do...!!! $N"
     fi
 done
 
