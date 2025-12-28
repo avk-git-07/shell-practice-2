@@ -1,10 +1,10 @@
 #!/bin/bash
 
-LOGS_FOLDER="/var/logs/shell-script"
+LOGS_FOLDER_2="/var/logs/shell-script2/"
 LOG_FILE_NAME=$(echo $0 | cut -d "." -f1)
 TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE="$LOGS_FOLDER-$LOG_FILE_NAME-$TIMESTAMP.log"
-mkdir -p $LOGS_FOLDER
+mkdir -p $LOGS_FOLDER_2
 
 USERID=$(id -u)
 R="\e[31m"
