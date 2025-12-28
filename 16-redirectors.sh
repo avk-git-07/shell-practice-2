@@ -1,7 +1,8 @@
 #!/bin/bash
 
 LOGS_FOLDER_2="/var/logs/shell-script2/"
-LOG_FILE_NAME=$(echo $0 | cut -d "." -f1)
+# LOG_FILE_NAME=$(echo $0 | cut -d "." -f1)
+LOG_FILE_NAME=$(basename "$0" .sh)
 TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE="$LOGS_FOLDER_2-$LOG_FILE_NAME-$TIMESTAMP.log"
 mkdir -p $LOGS_FOLDER_2
