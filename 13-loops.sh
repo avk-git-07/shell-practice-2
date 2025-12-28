@@ -5,7 +5,7 @@ R="\e[31m"
 G="\e[32m"
 N="\e[0m"
 
-VALIDATE(){
+UNINSTALL(){
     if [ $1 -eq 0 ]
     then
         echo -e "$G $2 is uninstalled successfully...!!! $N"
@@ -29,7 +29,7 @@ do
         echo -e "$R the $pkg is there in the server, we are removing it now ...!!! $N"
         echo ""
         dnf remove $pkg -y
-        VALIDATE $? $pkg
+        UNINSTALL $? $pkg
     else
         echo -e "$G the $pkg is already removed, nothing to do...!!! $N"
         echo ""
