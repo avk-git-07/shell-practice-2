@@ -30,7 +30,7 @@ VALIDATE(){
         exit 1
     else
         echo -e "$G $2 installation is successfull...!!! $N" | tee -a $LOG_FILE
-        echo "********************************************************************************" | tee -a $LOG_FILE
+        echo "..............................................................................." | tee -a $LOG_FILE
     fi
 }
 
@@ -44,15 +44,15 @@ do
     dnf list installed $pkg &>> $LOG_FILE
     if [ $? -ne 0 ]
     then
+        echo "" | tee -a $LOG_FILE
         echo -e "$R the $pkg is not installed, so let us install it...!!! $N" | tee -a $LOG_FILE
-        echo "********************************************************************************" | tee -a $LOG_FILE
+        echo "" | tee -a $LOG_FILE
         dnf install $pkg -y &>> $LOG_FILE
         echo "************************************** $pkg is installed *****************************************" | tee -a $LOG_FILE
-        echo "********************************************************************************" | tee -a $LOG_FILE
+        echo "" | tee -a $LOG_FILE
         VALIDATE $? $pkg
     else
         echo -e "$G the $pkg is already installed, nothing to do...!!! $N"
-        echo  "********************************************************************************" | tee -a $LOG_FILE
     fi
 done
 
