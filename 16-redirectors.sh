@@ -47,8 +47,8 @@ do
         echo -e "$R the $pkg is not installed, so let us install it...!!! $N" | tee -a $LOG_FILE
         echo ""
         dnf install $pkg -y &>> $LOG_FILE
-        echo "************************************** $pkg is installing *****************************************"
-        echo""
+        echo "************************************** $pkg is installing *****************************************" | tee -a $LOG_FILE
+        echo"" | tee -a $LOG_FILE
         VALIDATE $? $pkg
     else
         echo -e "$G the $pkg is already installed, nothing to do...!!! $N"
