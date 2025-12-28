@@ -1,7 +1,7 @@
 #!/bin/bash
 
 LOGS_FOLDER="/var/logs/shell-script"
-LOG_FILE_NAME=$(echo $0 | cut -d "." f1)
+LOG_FILE_NAME=$(echo $0 | cut -d "." -f1)
 TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE="$LOGS_FOLDER-$LOG_FILE_NAME-$TIMESTAMP.log"
 mkdir -p $LOGS_FOLDER
@@ -30,6 +30,7 @@ VALIDATE(){
         exit 1
     else
         echo -e "$G $2 installation is successfull...!!! $N" | tee -a $LOG_FILE
+        echo ""
     fi
 }
 
@@ -44,10 +45,12 @@ do
     if [ $? -ne 0 ]
     then
         echo -e "$R the $pkg is not installed, so let us install it...!!! $N" | tee -a $LOG_FILE
+        echo ""
         dnf install $pkg -y &>> $LOG_FILE
         VALIDATE $? $pkg
     else
         echo -e "$G the $pkg is already installed, nothing to do...!!! $N"
+        echo ""
     fi
 done
 
